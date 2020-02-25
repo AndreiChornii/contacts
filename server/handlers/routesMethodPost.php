@@ -8,6 +8,42 @@
 
 if ($method === 'POST') {
 // header('Content-type:application/json');
+    if ($route === '/delete') {
+        $request = json_decode(file_get_contents('php://input'), true);
+        
+//        var_dump($_SESSION['user']['id']);
+
+//        var_dump($request);
+         $to_del['id_user'] = +$_SESSION['user']['id'];
+         $to_del['id_contact'] = $request;
+//         var_dump($to_ins);
+        $isOk = deleteLink($to_del);
+//        
+        if ($isOk === 'ok') {
+            echo json_encode('deleted_ok');
+        } else {
+            echo json_encode($isOk);
+        }
+    }
+    
+    if ($route === '/insert') {
+        $request = json_decode(file_get_contents('php://input'), true);
+        
+//        var_dump($_SESSION['user']['id']);
+
+//        var_dump($request);
+         $to_ins['id_user'] = +$_SESSION['user']['id'];
+         $to_ins['id_contact'] = $request;
+//         var_dump($to_ins);
+        $isOk = insertLink($to_ins);
+//        
+        if ($isOk === 'ok') {
+            echo json_encode('inserted_ok');
+        } else {
+            echo json_encode($isOk);
+        }
+    }
+    
     if ($route === '/registration') {
         $request = json_decode(file_get_contents('php://input'), true);
 
@@ -33,79 +69,6 @@ if ($method === 'POST') {
                 echo json_encode($responseFail);
             }
 
-            
-        } else {
-            $response = [
-                'result' => false,
-                'message' => $isValid
-            ];
-
-            echo json_encode($response);
-        }
-    }
-    
-    if ($route === '/email') {
-        $request = json_decode(file_get_contents('php://input'), true);
-
-        $isValid = validEmail($request);
-        
-        if ($isValid) {
-            $responseSuccess = [
-                'result' => true,
-                'message' => 'email changed successfully'
-            ];
-            
-            $responseFail = [
-                'result' => false,
-                'message' => 'email already exists'
-            ];
-            
-            $request['id'] = $_SESSION['user']['id'];
-            
-            $isSave = changeEmail($request);
-            
-//            echo json_encode($isSave);
-            
-            if($isSave) {
-                $_SESSION['user']['email'] = $request['email'];
-                echo json_encode($responseSuccess);
-                
-            } else {
-                echo json_encode($responseFail);
-            }
-            
-        } else {
-            $response = [
-                'result' => false,
-                'message' => $isValid
-            ];
-
-            echo json_encode($response);
-        }
-    }
-    
-    if ($route === '/ttn') {
-        $request = json_decode(file_get_contents('php://input'), true);
-
-        $isValid = validTtn($request);
-        
-        if ($isValid) {
-            
-            $request['id'] = $_SESSION['user']['id'];
-            
-//            var_dump($_SESSION['user']['id']);
-            
-            $isGot = getStatus($request);
-//            
-//            var_dump($isGot);
-            
-//            echo json_encode($isGot);
-            
-            saveTtn($isGot);
-            
-            $isGot['ttns'] = getTtns($isGot);
-//            
-            echo json_encode($isGot);
             
         } else {
             $response = [

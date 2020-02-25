@@ -34,18 +34,23 @@ if ($method === 'GET') {
 
     include './views/header.php';
     
-    if ($route === '/') {
+    if ($route === '/' && !empty($currentUser)) {
+        $contacts = getContacts();
+//        var_dump($contacts);
         include './views/home.php';
     }
-
-    if ($route === '/email' && !empty($currentUser)) {
-        include './views/email.php';
-    }
-    elseif ($route === '/email'){
+    elseif ($route === '/'){
         header('Location: /login');
     }
 
     if ($route === '/contacts') {
+        
+        $to_sel['id_user'] = +$currentUser['id'];
+//        var_dump($to_sel);
+        $contacts_list = getUserContacts($to_sel);
+//        
+//        var_dump($contacts_list);
+        
         include './views/contacts.php';
     }
  
@@ -57,15 +62,7 @@ if ($method === 'GET') {
         $error = '';
         include './views/login.php';
     }
-    
-    if ($route === '/ttn' && !empty($currentUser)) {
-        $error = '';
-        include './views/ttn.php';
-    }
-    elseif ($route === '/ttn'){
-        header('Location: /login');
-    }
-    
+        
     if ($route === '/users' && $isAdmin) {
         $users = getUsers();
 //        var_dump($users);
