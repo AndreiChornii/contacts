@@ -24,6 +24,7 @@ li{
 
 .header__menu{
     display: flex;
+    text-transform: uppercase;
 }
 
 .header__link{

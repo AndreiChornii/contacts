@@ -49,7 +49,7 @@ function getUserContacts($fields){
     $pdo = new PDO('mysql:host=localhost;dbname=form_php;charset=utf8', 'ijdb_sample', 'mypassword');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    $sql = '  select Contact
+    $sql = '  select contacts.id, contacts.Contact
                 from contacts
                 join links on contacts.id=links.id_contact
                 join users on users.id=links.id_user
@@ -61,14 +61,23 @@ function getUserContacts($fields){
     return $query->fetchAll();
 }
 
-function getContacts(){
+function getContacts($fields){
     $pdo = new PDO('mysql:host=localhost;dbname=form_php;charset=utf8', 'ijdb_sample', 'mypassword');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    $sql = 'select id,contact from contacts;';
+    $sql = '  select contacts.id, contacts.Contact
+                from contacts 
+               where Contact not in (
+                            select contacts.Contact
+                              from contacts
+                              join links on contacts.id=links.id_contact
+                              join users on users.id=links.id_user
+                                        and users.id = :id_user
+              )
+              order by contacts.Contact;';
 
     $query = $pdo->prepare($sql);
-    $query->execute();
+    $query->execute($fields);
     return $query->fetchAll();
 }
 

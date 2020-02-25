@@ -16,7 +16,7 @@ function renderList(containerId, container){
 //    console.log(containerId.children);
 
     var div2 = document.querySelector('#block2');
-    div2.innerHTML = '<ul></ul>';
+//    div2.innerHTML = '<ul></ul>';
 
     for(const item of containerId.children){
 //        console.log(item);
@@ -25,7 +25,8 @@ function renderList(containerId, container){
             if (item.parentNode.parentElement.id === 'block1') {
                 item.remove();
 //                console.log(item);
-                div2.lastChild.appendChild(item);
+//                console.log(div2);
+                div2.firstElementChild.appendChild(item);
                 fetch('/insert', {
                     method: 'POST',
                     headers: {
@@ -37,7 +38,7 @@ function renderList(containerId, container){
                     return response.json();
                 })
                 .then(function (data) {
-                    console.log(data);
+//                    console.log(data);
 //                    alert('Даний контакт вже є в даного користувача');
                       if(data === 'inserted_ok'){
 //                          div2.lastChild.appendChild(item);
@@ -74,10 +75,17 @@ function renderList(containerId, container){
     }
 }
 
+
+//Contacts
 var container = document.querySelector('#block1');
 var containerLi = document.querySelector('#block1 ul');
 addButton(containerLi);
-
 renderList(containerLi, container);
+
+//Favorite contacts
+var container_favorite = document.querySelector('#block2');
+var containerLi_favorite = document.querySelector('#block2 ul');
+addButton(containerLi_favorite);
+renderList(containerLi_favorite, container);
 
 //console.log(container);

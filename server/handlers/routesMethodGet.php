@@ -34,9 +34,17 @@ if ($method === 'GET') {
 
     include './views/header.php';
     
+    if ($route === '/logout') {
+        $_SESSION['user'] = null;
+        header('Location: /login');
+    }
+    
     if ($route === '/' && !empty($currentUser)) {
-        $contacts = getContacts();
-//        var_dump($contacts);
+        $to_sel['id_user'] = +$currentUser['id'];
+//        var_dump($to_sel);
+        $contacts = getContacts($to_sel);
+        $contacts_list = getUserContacts($to_sel);
+//        var_dump($contacts_list);
         include './views/home.php';
     }
     elseif ($route === '/'){
@@ -48,7 +56,7 @@ if ($method === 'GET') {
         $to_sel['id_user'] = +$currentUser['id'];
 //        var_dump($to_sel);
         $contacts_list = getUserContacts($to_sel);
-//        
+        
 //        var_dump($contacts_list);
         
         include './views/contacts.php';
@@ -62,6 +70,7 @@ if ($method === 'GET') {
     }
     
     if ($route === '/login') {
+//        var_dump($currentUser);
         $error = '';
         include './views/login.php';
     }

@@ -26,7 +26,7 @@
                 <li><a class="header__link" href="/registration">Registration</a></li>
                 <?php if(!empty($currentUser['username'])){ ?>
                 <li><a class="header__link" href="/contacts">Favorite contacts</a></li>
-                <!--<li><a class="header__link" href="/ttn">ТТН</a></li>-->
+                <li><a class="header__link" href="/logout">Logout</a></li>
                 <?php } ?>
                 <li><b><?= $currentUser['username'] ?></b></li>
             </ul>

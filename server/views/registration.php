@@ -21,7 +21,7 @@
                     <input class="auth__text" type="password" id="userpass">
                     <i class="auth__error auth__error_hide">Must contain (a-z, A-Z, 0-9, length > 7 characters)</i>
                 </div>
-                <label class="auth__check">
+                <label class="auth__check" style="display: none;">
                     Subscribe
                     <input type="checkbox" id="usersubscribe">
                 </label>
