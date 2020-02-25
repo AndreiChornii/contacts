@@ -43,7 +43,7 @@ if ($method === 'GET') {
         header('Location: /login');
     }
 
-    if ($route === '/contacts') {
+    if ($route === '/contacts' && !empty($currentUser)) {
         
         $to_sel['id_user'] = +$currentUser['id'];
 //        var_dump($to_sel);
@@ -52,6 +52,9 @@ if ($method === 'GET') {
 //        var_dump($contacts_list);
         
         include './views/contacts.php';
+    }
+    elseif ($route === '/contacts'){
+        header('Location: /login');
     }
  
     if ($route === '/registration') {

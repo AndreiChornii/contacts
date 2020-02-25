@@ -97,6 +97,26 @@ function getUsers(){
 }
 
 function getUser($email){
+    
+    try {
+        $pdo = new PDO('mysql:host=localhost;dbname=form_php;charset=utf8', 'ijdb_sample', 'mypassword');
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = "select id, username, password, email, phone
+                              from users 
+                             where email = :email";
+
+        $fields['email'] = $email;
+
+        $query = $pdo->prepare($sql);
+        $query->execute($fields);
+        return $query->fetchAll();
+    } catch (PDOException $e) {
+        $output = 'Unable to get user: ' . $e->getMessage() . ' in ' .
+                $e->getFile() . ':' . $e->getLine();
+        return $output;
+    }
+
 //    $DB = mysqli_connect("127.0.0.1", "andrei", "Aaaaaaa1", "website");
     $DB = mysqli_connect("localhost", "ijdb_sample", "mypassword", "form_php");
 
@@ -123,6 +143,30 @@ function getUser($email){
 }
 
 function addUser($data){
+    
+ try {
+    $pdo = new PDO('mysql:host=localhost;dbname=form_php;charset=utf8', 'ijdb_sample', 'mypassword');
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $sql = "insert into users(username, email, `password`, phone, age)
+                       VALUES (:name, :email, :password, :phone, :age);";
+
+        $fields['name'] = $data['name'];
+        $fields['email'] = $data['email'];
+        $fields['password'] = $data['password'];
+        $fields['phone'] = $data['phone'];
+        $fields['age'] = $data['age'];
+
+        $query = $pdo->prepare($sql);
+	$query->execute($fields);
+        return 'ok';
+    }
+    catch (PDOException $e) {
+	$output = 'Unable to add user: ' . $e->getMessage() . ' in ' .
+	$e->getFile() . ':' . $e->getLine();
+        return $output;
+    }   
+    
 //    $DB = mysqli_connect("127.0.0.1", "andrei", "Aaaaaaa1", "website");
     $DB = mysqli_connect("localhost", "ijdb_sample", "mypassword", "form_php");
 
@@ -133,9 +177,7 @@ function addUser($data){
         exit;
     }
     
-    $sql = "insert into users(username, email, `password`, phone, age)
-                       VALUES ('{$data['name']}', '{$data['email']}', '{$data['password']}', '{$data['phone']}', {$data['age']});";
-//
+    //
 //echo "Соединение с MySQL установлено!" . PHP_EOL;
 //echo "Информация о сервере: " . mysqli_get_host_info($link) . PHP_EOL;
 

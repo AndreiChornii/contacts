@@ -63,10 +63,10 @@ if ($method === 'POST') {
             
             $isSave = addUser($request);
             
-            if($isSave) {
-                echo json_encode($responseSuccess);
+            if($isSave === 'ok') {
+                echo json_encode('user_added_ok');
             } else {
-                echo json_encode($responseFail);
+                echo json_encode($isSave);
             }
 
             

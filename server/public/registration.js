@@ -68,7 +68,12 @@ formManager.send = function send() {
         return response.json();
     }).then(function(data){
         console.log(data);
-        alert(data.message);
+//                    alert('Даний контакт вже є в даного користувача');
+        if (data === 'user_added_ok') {
+            alert('User added success. Go to login');
+        } else {
+            alert(data);
+        }
     });
 };
 
