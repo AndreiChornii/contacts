@@ -1,5 +1,6 @@
 <?php
 session_start();
+include './includes/DatabaseConnection.php';
 include './handlers/dump.php';
 include './handlers/mysqli.php';
 include './handlers/validate.php';

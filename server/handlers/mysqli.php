@@ -6,17 +6,15 @@
  * and open the template in the editor.
  */
 
-function deleteLink($fields){
+function deleteLink($fields, $pdo){
     try {
-    $pdo = new PDO('mysql:host=localhost;dbname=form_php;charset=utf8', 'ijdb_sample', 'mypassword');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
         $sql = 'delete from links 
                  where `id_user` = :id_user
                    and `id_contact` = :id_contact';
 
         $query = $pdo->prepare($sql);
 	$query->execute($fields);
+        $pdo = null;
         return 'ok';
     }
     catch (PDOException $e) {
@@ -26,16 +24,14 @@ function deleteLink($fields){
     }    
 }
 
-function insertLink($fields){
+function insertLink($fields, $pdo){
     try {
-    $pdo = new PDO('mysql:host=localhost;dbname=form_php;charset=utf8', 'ijdb_sample', 'mypassword');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
         $sql = 'insert into links(`id_user`, `id_contact`)
                        VALUES(:id_user, :id_contact);';
 
         $query = $pdo->prepare($sql);
 	$query->execute($fields);
+        $pdo = null;
         return 'ok';
     }
     catch (PDOException $e) {
@@ -45,10 +41,7 @@ function insertLink($fields){
     }    
 }
 
-function getUserContacts($fields){
-    $pdo = new PDO('mysql:host=localhost;dbname=form_php;charset=utf8', 'ijdb_sample', 'mypassword');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
+function getUserContacts($fields, $pdo){
     $sql = '  select contacts.id, contacts.Contact
                 from contacts
                 join links on contacts.id=links.id_contact
@@ -58,13 +51,11 @@ function getUserContacts($fields){
 
     $query = $pdo->prepare($sql);
     $query->execute($fields);
+    $pdo = null;
     return $query->fetchAll();
 }
 
-function getContacts($fields){
-    $pdo = new PDO('mysql:host=localhost;dbname=form_php;charset=utf8', 'ijdb_sample', 'mypassword');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
+function getContacts($fields, $pdo){
     $sql = '  select contacts.id, contacts.Contact
                 from contacts 
                where Contact not in (
@@ -78,12 +69,11 @@ function getContacts($fields){
 
     $query = $pdo->prepare($sql);
     $query->execute($fields);
+    $pdo = null;
     return $query->fetchAll();
 }
 
-function getUsers(){
-//    $DB = mysqli_connect("127.0.0.1", "andrei", "Aaaaaaa1", "website");
-    $DB = mysqli_connect("localhost", "ijdb_sample", "mypassword", "form_php");
+function getUsers($DB){
     if (!$DB) {
         echo "Ошибка: Невозможно установить соединение с MySQL." . PHP_EOL;
 //    echo "Код ошибки errno: " . mysqli_connect_errno() . PHP_EOL;
@@ -105,12 +95,9 @@ function getUsers(){
     return $users;
 }
 
-function getUser($email){
+function getUser($email, $pdo){
     
     try {
-        $pdo = new PDO('mysql:host=localhost;dbname=form_php;charset=utf8', 'ijdb_sample', 'mypassword');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
         $sql = "select id, username, password, email, phone
                               from users 
                              where email = :email";
@@ -119,44 +106,18 @@ function getUser($email){
 
         $query = $pdo->prepare($sql);
         $query->execute($fields);
+        $pdo = null;
         return $query->fetchAll();
     } catch (PDOException $e) {
         $output = 'Unable to get user: ' . $e->getMessage() . ' in ' .
                 $e->getFile() . ':' . $e->getLine();
         return $output;
     }
-
-//    $DB = mysqli_connect("127.0.0.1", "andrei", "Aaaaaaa1", "website");
-    $DB = mysqli_connect("localhost", "ijdb_sample", "mypassword", "form_php");
-
-    if (!$DB) {
-        echo "Ошибка: Невозможно установить соединение с MySQL." . PHP_EOL;
-//    echo "Код ошибки errno: " . mysqli_connect_errno() . PHP_EOL;
-//    echo "Текст ошибки error: " . mysqli_connect_error() . PHP_EOL;
-        exit;
-    }
-//
-//echo "Соединение с MySQL установлено!" . PHP_EOL;
-//echo "Информация о сервере: " . mysqli_get_host_info($link) . PHP_EOL;
-
-    $dataUser = $DB->query("select id, username, password, email, phone
-                              from users 
-                             where email = '{$email}'");
-
-    $user = $dataUser->fetch_all(MYSQLI_ASSOC);
-//    var_dump($users->fetch_all(MYSQLI_ASSOC));
-
-    mysqli_close($DB);
-    
-    return $user;
 }
 
-function addUser($data){
+function addUser($data, $pdo){
     
  try {
-    $pdo = new PDO('mysql:host=localhost;dbname=form_php;charset=utf8', 'ijdb_sample', 'mypassword');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
         $sql = "insert into users(username, email, `password`, phone, age)
                        VALUES (:name, :email, :password, :phone, :age);";
 
@@ -168,6 +129,7 @@ function addUser($data){
 
         $query = $pdo->prepare($sql);
 	$query->execute($fields);
+        $pdo = null;
         return 'ok';
     }
     catch (PDOException $e) {
@@ -175,26 +137,4 @@ function addUser($data){
 	$e->getFile() . ':' . $e->getLine();
         return $output;
     }   
-    
-//    $DB = mysqli_connect("127.0.0.1", "andrei", "Aaaaaaa1", "website");
-    $DB = mysqli_connect("localhost", "ijdb_sample", "mypassword", "form_php");
-
-    if (!$DB) {
-        echo "Ошибка: Невозможно установить соединение с MySQL." . PHP_EOL;
-//    echo "Код ошибки errno: " . mysqli_connect_errno() . PHP_EOL;
-//    echo "Текст ошибки error: " . mysqli_connect_error() . PHP_EOL;
-        exit;
-    }
-    
-    //
-//echo "Соединение с MySQL установлено!" . PHP_EOL;
-//echo "Информация о сервере: " . mysqli_get_host_info($link) . PHP_EOL;
-
-    $resultQuery = $DB->query($sql);
-
-    mysqli_close($DB);
-    
-//    var_dump($resultQuery);
-    
-    return $resultQuery;
 }

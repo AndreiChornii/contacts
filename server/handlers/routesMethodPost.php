@@ -17,7 +17,7 @@ if ($method === 'POST') {
          $to_del['id_user'] = +$_SESSION['user']['id'];
          $to_del['id_contact'] = $request;
 //         var_dump($to_ins);
-        $isOk = deleteLink($to_del);
+        $isOk = deleteLink($to_del, $pdo);
 //        
         if ($isOk === 'ok') {
             echo json_encode('deleted_ok');
@@ -35,7 +35,7 @@ if ($method === 'POST') {
          $to_ins['id_user'] = +$_SESSION['user']['id'];
          $to_ins['id_contact'] = $request;
 //         var_dump($to_ins);
-        $isOk = insertLink($to_ins);
+        $isOk = insertLink($to_ins, $pdo);
 //        
         if ($isOk === 'ok') {
             echo json_encode('inserted_ok');
@@ -61,7 +61,7 @@ if ($method === 'POST') {
             ];
             $request['age'] = 50;
             
-            $isSave = addUser($request);
+            $isSave = addUser($request, $pdo);
             
             if($isSave === 'ok') {
                 echo json_encode('user_added_ok');
@@ -90,7 +90,7 @@ if ($method === 'POST') {
         
         $email = $request['email'];
         $password = $request['password'];
-        $User = getUser($email);
+        $User = getUser($email, $pdo);
         
         /* if not exists user in database or password is not correct
            send page login with error

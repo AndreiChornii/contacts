@@ -42,8 +42,8 @@ if ($method === 'GET') {
     if ($route === '/' && !empty($currentUser)) {
         $to_sel['id_user'] = +$currentUser['id'];
 //        var_dump($to_sel);
-        $contacts = getContacts($to_sel);
-        $contacts_list = getUserContacts($to_sel);
+        $contacts = getContacts($to_sel, $pdo);
+        $contacts_list = getUserContacts($to_sel, $pdo);
 //        var_dump($contacts_list);
         include './views/home.php';
     }
@@ -55,7 +55,7 @@ if ($method === 'GET') {
         
         $to_sel['id_user'] = +$currentUser['id'];
 //        var_dump($to_sel);
-        $contacts_list = getUserContacts($to_sel);
+        $contacts_list = getUserContacts($to_sel, $pdo);
         
 //        var_dump($contacts_list);
         
@@ -76,7 +76,7 @@ if ($method === 'GET') {
     }
         
     if ($route === '/users' && $isAdmin) {
-        $users = getUsers();
+        $users = getUsers($DB);
 //        var_dump($users);
         include './views/users.php';
     } elseif ($route === '/users'){
