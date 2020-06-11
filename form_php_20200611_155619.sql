@@ -12,7 +12,7 @@
 
 
 -- CREATE TABLE "contacts" -------------------------------------
-CREATE TABLE `contacts` ( 
+CREATE TABLE `contacts`( 
 	`id` Int( 11 ) AUTO_INCREMENT NOT NULL,
 	`Contact` VarChar( 200 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
 	PRIMARY KEY ( `id` ) )
@@ -24,7 +24,7 @@ AUTO_INCREMENT = 11;
 
 
 -- CREATE TABLE "links" ----------------------------------------
-CREATE TABLE `links` ( 
+CREATE TABLE `links`( 
 	`id_user` Int( 11 ) NOT NULL,
 	`id_contact` Int( 11 ) NOT NULL,
 	CONSTRAINT `id_user` UNIQUE( `id_user`, `id_contact` ) )
@@ -35,7 +35,7 @@ ENGINE = InnoDB;
 
 
 -- CREATE TABLE "users" ----------------------------------------
-CREATE TABLE `users` ( 
+CREATE TABLE `users`( 
 	`id` Int( 11 ) AUTO_INCREMENT NOT NULL,
 	`username` VarChar( 50 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
 	`email` VarChar( 50 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -48,7 +48,7 @@ CREATE TABLE `users` (
 CHARACTER SET = utf8
 COLLATE = utf8_general_ci
 ENGINE = InnoDB
-AUTO_INCREMENT = 12;
+AUTO_INCREMENT = 33;
 -- -------------------------------------------------------------
 
 
@@ -72,20 +72,29 @@ INSERT INTO `links`(`id_user`,`id_contact`) VALUES
 ( '13', '1' ),
 ( '5', '3' ),
 ( '13', '3' ),
+( '26', '3' ),
 ( '6', '4' ),
 ( '12', '4' ),
 ( '12', '5' ),
 ( '14', '5' ),
+( '32', '5' ),
 ( '4', '6' ),
-( '7', '7' ),
+( '32', '6' ),
 ( '8', '7' ),
 ( '13', '7' ),
 ( '21', '7' ),
+( '22', '7' ),
+( '27', '7' ),
+( '32', '7' ),
 ( '4', '8' ),
+( '27', '8' ),
+( '32', '8' ),
 ( '7', '9' ),
 ( '14', '9' ),
+( '23', '9' ),
+( '30', '9' ),
+( '32', '9' ),
 ( '5', '10' ),
-( '7', '10' ),
 ( '13', '10' ),
 ( '14', '10' );
 -- ---------------------------------------------------------
@@ -108,7 +117,15 @@ INSERT INTO `users`(`id`,`username`,`email`,`password`,`phone`,`age`) VALUES
 ( '14', 'gameover', 'game@hhh.vvv', 'bt4q2g5q425q2', '+380930003344', '50' ),
 ( '19', 'temppppp', 'max@gmail.com', 'b4qgr3qrgq3', '+380668764455', '50' ),
 ( '20', 'antilopa', 'antilopa@ffff.vvv', '3rg4rgbr4q25', '+380669871122', '50' ),
-( '21', 'domain', 'domain@fff.vvv', 'fveqrgq342', '+380505554433', '50' );
+( '21', 'domain', 'domain@fff.vvv', 'fveqrgq342', '+380505554433', '50' ),
+( '22', 'proba', 'proba@gmail.com', 'begrt3qrg3', '+380500300908', '50' ),
+( '23', 'andrei_test', 'andrei_test@gmail.com', 'fg3rg3tbg3r', '+380667770044', '50' ),
+( '24', 'alert', 'alert@gmail.com', 'fevr3q4', '+380507772233', '50' ),
+( '26', 'alert2', 'alert2@gmail.com', 'fevr3q4', '+380507772232', '50' ),
+( '27', 'pdo_test', 'pdo_test@gmail.com', 'frbr3qrgq3', '+380933335588', '50' ),
+( '28', 'pdo_close', 'pdo_close@gmail.com', 'bt4nye5w6q', '+380505551199', '50' ),
+( '30', 'close', 'close@gmail.com', 'tnmet56y4tqr', '+380661234567', '50' ),
+( '32', 'test20', 'test20@gmail.com', 'Rhenj567', '+380502225577', '50' );
 -- ---------------------------------------------------------
 
 
