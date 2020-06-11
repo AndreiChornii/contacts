@@ -10,6 +10,8 @@ $route = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
 
 echo '<BR />';
+var_dump($_SERVER);
+echo '<BR />';
 echo $route;
 echo '<BR />';
 echo $method;
