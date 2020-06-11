@@ -50,6 +50,9 @@ if ($method === 'GET') {
     elseif ($route === '/'){
         header('Location: /login');
     }
+//    else{
+//        header('Location: /login');
+//    }
 
     if ($route === '/contacts' && !empty($currentUser)) {
         
