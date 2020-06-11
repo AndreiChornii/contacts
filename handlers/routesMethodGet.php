@@ -7,7 +7,10 @@
  */
 
 if ($method === 'GET') {
-    # code...
+//    echo '<BR />';
+//    echo $route;
+//    echo '<BR />';
+//    echo $method;
     
     $currentUser = $_SESSION['user'];
     
