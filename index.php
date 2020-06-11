@@ -16,6 +16,6 @@ echo $route;
 echo '<BR />';
 echo $method;
 
-//include __DIR__ . '/handlers/routesMethodGet.php';
-//
-//include __DIR__ . '/handlers/routesMethodPost.php';
+include __DIR__ . '/handlers/routesMethodGet.php';
+
+include __DIR__ . '/handlers/routesMethodPost.php';
