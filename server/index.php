@@ -6,12 +6,13 @@ echo 'hello_world';
 //include './handlers/mysqli.php';
 //include './handlers/validate.php';
 //
-//$route = $_SERVER['REQUEST_URI'];
-//$method = $_SERVER['REQUEST_METHOD'];
-//
-//echo $route;
-//echo '<BR />';
-//echo $method;
+$route = $_SERVER['REQUEST_URI'];
+$method = $_SERVER['REQUEST_METHOD'];
+
+echo '<BR />';
+echo $route;
+echo '<BR />';
+echo $method;
 //
 //include './handlers/routesMethodGet.php';
 //
