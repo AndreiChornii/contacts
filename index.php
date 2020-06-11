@@ -1,10 +1,10 @@
 <?php
 //echo 'hello_world';
 session_start();
-include './includes/DatabaseConnection.php';
-include './handlers/dump.php';
-include './handlers/mysqli.php';
-include './handlers/validate.php';
+include __DIR__ . '/includes/DatabaseConnection.php';
+include __DIR__ . '/handlers/dump.php';
+include __DIR__ . '/handlers/mysqli.php';
+include __DIR__ . '/handlers/validate.php';
 
 $route = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
@@ -16,6 +16,6 @@ $method = $_SERVER['REQUEST_METHOD'];
 //echo '<BR />';
 //echo $method;
 
-include './handlers/routesMethodGet.php';
+include __DIR__ . '/handlers/routesMethodGet.php';
 
-include './handlers/routesMethodPost.php';
+include __DIR__ . '/handlers/routesMethodPost.php';
