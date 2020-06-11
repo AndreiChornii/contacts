@@ -11,6 +11,3 @@ $method = $_SERVER['REQUEST_METHOD'];
 include './handlers/routesMethodGet.php';
 
 include './handlers/routesMethodPost.php';
-
-
-//getUsers();
