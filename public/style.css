@@ -139,4 +139,7 @@ table{
     .header__menu{
         flex-wrap: wrap;
     }
+    .auth__row{
+        flex-direction: column;
+    }
 }
