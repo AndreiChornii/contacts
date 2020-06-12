@@ -3,8 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/andreichornii/contacts/server/includes/DatabaseConnection.php</file>
-            <file>file:/home/andreichornii/contacts/server/index.php</file>
+            <file>file:/home/andreichornii/contacts/.gitignore</file>
+            <file>file:/home/andreichornii/contacts/views/home.php</file>
+            <file>file:/home/andreichornii/contacts/.htaccess</file>
+            <file>file:/home/andreichornii/contacts/handlers/routesMethodGet.php</file>
+            <file>file:/home/andreichornii/contacts/handlers/routesMethodPost.php</file>
+            <file>file:/home/andreichornii/contacts/public/login.js</file>
+            <file>file:/home/andreichornii/contacts/index.php</file>
         </group>
     </open-files>
 </project-private>

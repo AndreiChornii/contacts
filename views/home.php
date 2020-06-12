@@ -1,4 +1,4 @@
-<h1 style="text-align: center">Contacts | Favorite contacts</h1>
+<h1 style="text-align: center">Contacts | Favorite</h1>
 <div id = container>
     
     <div  id = "block1"> 

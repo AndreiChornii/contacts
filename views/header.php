@@ -25,7 +25,7 @@
                 <?php } ?>
                 <li><a class="header__link<?php if($route === '/registration') {echo ' active';} ?>" href="/registration">Registration</a></li>
                 <?php if(!empty($currentUser['username'])){ ?>
-                <li><a class="header__link<?php if($route === '/contacts') {echo ' active';} ?>" href="/contacts">Favorite contacts</a></li>
+                <li><a class="header__link<?php if($route === '/contacts') {echo ' active';} ?>" href="/contacts">Favorite</a></li>
                 <li><a class="header__link<?php if($route === '/logout') {echo ' active';} ?>" href="/logout">Logout</a></li>
                 <?php } ?>
                 <li><b><?= $currentUser['username'] ?></b></li>
