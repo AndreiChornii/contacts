@@ -131,8 +131,8 @@ table{
 
 @media(max-width: 500px){
     .header__link{
-        padding-left: 0;
-        padding-right: 5px;
+        padding-left: 3px;
+        padding-right: 3px;
         padding-top:0;
         padding-bottom: 0;
     }
